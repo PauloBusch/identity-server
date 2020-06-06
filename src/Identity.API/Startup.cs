@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer.Managers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,9 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using IdentityServer4.AccessTokenValidation;
 
-namespace Example1.API
+namespace Identity.API
 {
     public class Startup
     {
@@ -24,12 +24,10 @@ namespace Example1.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                .AddIdentityServerAuthentication(options =>
-                {
-                    options.Authority = "https://localhost:5001";
-                    options.ApiName = "app.api1";
-                });
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential() // AddSigningCredential
+                .AddInMemoryApiResources(ResourceManager.Apis)
+                .AddInMemoryClients(ClientManager.Clients);
 
             services.AddControllers();
         }
@@ -39,10 +37,12 @@ namespace Example1.API
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
-            app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseHttpsRedirection();
 
+            app.UseRouting();
+
+            app.UseIdentityServer();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
