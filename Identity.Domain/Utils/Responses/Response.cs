@@ -7,7 +7,7 @@ namespace Identity.Domain.Utils.Responses
         [JsonIgnore] public EStatus Status { get; protected set; }
         public bool Success => Status == EStatus.Success;
         public string Message { get; private set; }
-        public int TotalRows { get; private set; }
+        public int? TotalRows { get; private set; }
         public T Data { get; private set; }
 
         public Response(EStatus status, string message)
@@ -17,7 +17,7 @@ namespace Identity.Domain.Utils.Responses
             TotalRows = 0;
         }
 
-        public Response(T data, int total) { 
+        public Response(T data, int? total = null) { 
             Data = data;  
             TotalRows = total;
         }
