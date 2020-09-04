@@ -1,39 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{99D02F7A-1C86-4895-AD4C-5FFB41401E4C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API", "src\Identity.API\Identity.API.csproj", "{65960C92-73A3-4256-81F1-FB0369051982}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API", "Identity.API\Identity.API.csproj", "{E001C262-668C-4069-AACF-4E3DB38A6130}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E001C262-668C-4069-AACF-4E3DB38A6130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E001C262-668C-4069-AACF-4E3DB38A6130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E001C262-668C-4069-AACF-4E3DB38A6130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E001C262-668C-4069-AACF-4E3DB38A6130}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{65960C92-73A3-4256-81F1-FB0369051982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65960C92-73A3-4256-81F1-FB0369051982}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65960C92-73A3-4256-81F1-FB0369051982}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{65960C92-73A3-4256-81F1-FB0369051982}.Debug|x64.Build.0 = Debug|Any CPU
-		{65960C92-73A3-4256-81F1-FB0369051982}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{65960C92-73A3-4256-81F1-FB0369051982}.Debug|x86.Build.0 = Debug|Any CPU
-		{65960C92-73A3-4256-81F1-FB0369051982}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65960C92-73A3-4256-81F1-FB0369051982}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65960C92-73A3-4256-81F1-FB0369051982}.Release|x64.ActiveCfg = Release|Any CPU
-		{65960C92-73A3-4256-81F1-FB0369051982}.Release|x64.Build.0 = Release|Any CPU
-		{65960C92-73A3-4256-81F1-FB0369051982}.Release|x86.ActiveCfg = Release|Any CPU
-		{65960C92-73A3-4256-81F1-FB0369051982}.Release|x86.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{65960C92-73A3-4256-81F1-FB0369051982} = {99D02F7A-1C86-4895-AD4C-5FFB41401E4C}
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B15C2A1E-20B7-4FDC-9464-70BC0F31E6D8}
 	EndGlobalSection
 EndGlobal
