@@ -3,7 +3,7 @@ using Identity.Domain.Utils.Common;
 using Identity.Domain.Utils.interfaces;
 using System.Linq;
 
-namespace Identity.Domain.Users.Service
+namespace Identity.Domain.Users.Services
 {
     public class UserService : ServiceBase<User>, IUserService
     {
