@@ -9,9 +9,9 @@ namespace Identity.Domain.Utils.interfaces
 {
     public interface IService<TEntity> where TEntity : EntityBase
     {
-        Task<Response<TEntity>> GetAsync(Guid id);
-        Task<Response<IQueryable<TEntity>>> QueryAsync();
-        Task<Response<IEnumerable<TEntity>>> GetAllAsync();
+        IQueryable<TEntity> Query();
+        Task<TEntity> GetAsync(Guid id);
+        Task<IEnumerable<TEntity>> GetAllAsync();
         Task<Response> Create(TEntity entity);
         Task<Response> Update(TEntity entity);
         Task<Response> Delete(TEntity entity);

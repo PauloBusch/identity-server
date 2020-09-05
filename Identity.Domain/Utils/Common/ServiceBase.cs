@@ -33,22 +33,19 @@ namespace Identity.Domain.Utils.Common
             return await _uow.CommitAsync();
         }
 
-        public async Task<Response<IEnumerable<TEntity>>> GetAllAsync()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            var list = await _repository.GetAllAsync();
-            return new Response<IEnumerable<TEntity>>(list, list.Count());
+            return await _repository.GetAllAsync();
         }
 
-        public async Task<Response<TEntity>> GetAsync(Guid id)
+        public async Task<TEntity> GetAsync(Guid id)
         {
-            var entity = await _repository.GetAsync(id);
-            return new Response<TEntity>(entity);
+            return await _repository.GetAsync(id);
         }
 
-        public async Task<Response<IQueryable<TEntity>>> QueryAsync()
+        public IQueryable<TEntity> Query()
         {
-            var query = await _repository.QueryAsync();
-            return new Response<IQueryable<TEntity>>(query);
+            return _repository.Query();
         }
 
         public async Task<Response> Update(TEntity entity)

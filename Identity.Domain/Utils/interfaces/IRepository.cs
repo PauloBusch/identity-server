@@ -8,8 +8,8 @@ namespace Identity.Domain.Utils.interfaces
 {
     public interface IRepository<TEntity> where TEntity : EntityBase
     {
+        IQueryable<TEntity> Query();
         Task<TEntity> GetAsync(Guid id);
-        Task<IQueryable<TEntity>> QueryAsync();
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task Create(TEntity entity);
         Task Update(TEntity entity);
