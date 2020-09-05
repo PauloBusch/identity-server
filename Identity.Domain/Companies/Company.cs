@@ -10,9 +10,6 @@ namespace Identity.Domain.Companies
         public string Name { get; private set; }
         public string FederalRegistration { get; private set; }
         public bool Active { get; private set; }
-        public IReadOnlyCollection<User> Users => _users.AsReadOnly();
-
-        private List<User> _users;
 
         public Company(
             Guid? id,
@@ -20,7 +17,6 @@ namespace Identity.Domain.Companies
             string federalRegistration
         ) : base(id ?? Guid.NewGuid())
         {
-            _users = new List<User>();
             Name = name;
             FederalRegistration = federalRegistration;
             Active = true;
