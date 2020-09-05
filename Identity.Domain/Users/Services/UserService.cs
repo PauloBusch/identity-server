@@ -1,6 +1,6 @@
 ﻿using Identity.Domain.Users.Repositories;
 using Identity.Domain.Utils.Common;
-using Identity.Domain.Utils.interfaces;
+using Identity.Domain.Utils.Interfaces;
 using System.Linq;
 
 namespace Identity.Domain.Users.Services

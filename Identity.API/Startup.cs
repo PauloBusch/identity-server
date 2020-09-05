@@ -17,6 +17,9 @@ namespace Identity.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            IocMapping.AddRepositories(services);
+            IocMapping.AddServices(services);
+
             services.AddControllers();
         }
 

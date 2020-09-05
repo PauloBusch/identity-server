@@ -1,4 +1,4 @@
-﻿using Identity.Domain.Utils.interfaces;
+﻿using Identity.Domain.Utils.Interfaces;
 
 namespace Identity.Domain.Users.Repositories
 {

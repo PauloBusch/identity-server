@@ -1,4 +1,4 @@
-﻿using Identity.Domain.Utils.interfaces;
+﻿using Identity.Domain.Utils.Interfaces;
 using Identity.Domain.Utils.Responses;
 using System;
 using System.Collections.Generic;

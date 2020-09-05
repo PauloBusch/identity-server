@@ -1,7 +1,7 @@
 ﻿using Identity.Domain.Companies.Repositories;
 using Identity.Domain.Users;
 using Identity.Domain.Utils.Common;
-using Identity.Domain.Utils.interfaces;
+using Identity.Domain.Utils.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,9 +17,9 @@ namespace Identity.Domain.Companies.Services
             _companyRepository = uow.Companies;
         }
 
-        public async Task<IEnumerable<User>> GetUsers(Guid id)
+        public async Task<IEnumerable<User>> GetUsersAsync(Guid id)
         {
-            return await _companyRepository.GetUsers(id);
+            return await _companyRepository.GetUsersAsync(id);
         }
     }
 }

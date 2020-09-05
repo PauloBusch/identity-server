@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Identity.Domain.Utils.interfaces
+namespace Identity.Domain.Utils.Interfaces
 {
     public interface IService<TEntity> where TEntity : EntityBase
     {
