@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Identity.Domain.Utils.Enums;
+using Newtonsoft.Json;
 
 namespace Identity.Domain.Utils.Responses
 {
@@ -26,6 +27,8 @@ namespace Identity.Domain.Utils.Responses
     public class Response : Response<dynamic>
     {
         public Response() : base(EStatus.Success, null) { }
+
+        public Response(int total) : base(null, total) { }
 
         public Response(EStatus status, string message) : base(status, message) { }
     }

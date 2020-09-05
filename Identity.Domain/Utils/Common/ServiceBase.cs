@@ -11,10 +11,10 @@ namespace Identity.Domain.Utils.Common
         where TEntity : EntityBase
     {
         private readonly IRepository<TEntity> _repository;
-        private readonly IUnitOfWork _uow; 
+        private readonly IIdentityUnitOfWork _uow; 
 
         public ServiceBase(
-            IUnitOfWork uow, 
+            IIdentityUnitOfWork uow, 
             IRepository<TEntity> repository
         ) {
             _uow = uow;

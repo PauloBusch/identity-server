@@ -12,7 +12,7 @@ namespace Identity.Domain.Companies.Services
     {
         private readonly ICompanyRepository _companyRepository;
 
-        public CompanyService(IUnitOfWork uow) : base(uow, uow.Companies)
+        public CompanyService(IIdentityUnitOfWork uow) : base(uow, uow.Companies)
         {
             _companyRepository = uow.Companies;
         }

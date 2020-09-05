@@ -3,6 +3,8 @@ using Identity.Domain.Companies.Services;
 using Identity.Domain.Users.Services;
 using Identity.Domain.Utils.Common;
 using Identity.Domain.Utils.Interfaces;
+using Identity.Infrastructure;
+using Identity.Infrastructure.Utils.Common;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Identity.API
@@ -11,7 +13,7 @@ namespace Identity.API
     {
         public static void AddRepositories(IServiceCollection collection)
         {
-            //collection.AddScoped(typeof(IRepository<>), typeof(RepositoryBase<>));
+            collection.AddScoped(typeof(IRepository<>), typeof(RepositoryBase<>));
             //collection.AddScoped<IUserRepository, UserRepository>();
             //collection.AddScoped<ICompanyRepository, CompanyRepository>();
             //collection.AddScoped<IClientRepository, ClientRepository>();

@@ -14,7 +14,7 @@ namespace Identity.Domain.Clients.Services
     {
         private readonly IClientRepository _clientRepository;
 
-        public ClientService(IUnitOfWork uow) : base(uow, uow.Clients)
+        public ClientService(IIdentityUnitOfWork uow) : base(uow, uow.Clients)
         {
             _clientRepository = uow.Clients;
         }

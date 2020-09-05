@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Identity.Domain.Utils.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IIdentityUnitOfWork
     {
         IUserRepository Users { get; }
         ICompanyRepository Companies { get; }

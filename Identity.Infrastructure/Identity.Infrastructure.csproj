@@ -11,9 +11,12 @@
   <ItemGroup>
     <Folder Include="Clients\" />
     <Folder Include="Companies\" />
-    <Folder Include="Users\Mapping\" />
-    <Folder Include="Users\" />
     <Folder Include="Users\Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.7" />
   </ItemGroup>
 
 </Project>

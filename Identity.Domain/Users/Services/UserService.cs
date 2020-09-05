@@ -9,7 +9,7 @@ namespace Identity.Domain.Users.Services
     {
         private readonly IUserRepository _userRepository;
 
-        public UserService(IUnitOfWork uow) : base(uow, uow.Users)
+        public UserService(IIdentityUnitOfWork uow) : base(uow, uow.Users)
         {
             _userRepository = uow.Users;
         }

@@ -1,4 +1,4 @@
-﻿namespace Identity.Domain.Utils.Responses
+﻿namespace Identity.Domain.Utils.Enums
 {
     public enum EStatus
     {

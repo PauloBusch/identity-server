@@ -1,7 +1,7 @@
 ﻿using Identity.Domain.Utils.Responses;
 using System.Threading.Tasks;
 
-namespace Identity.Domain.Utils.Requests
+namespace Identity.Domain.Utils.Interfaces
 {
     public interface IRequest
     {
