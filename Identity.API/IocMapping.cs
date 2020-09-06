@@ -3,8 +3,8 @@ using Identity.Domain.Users.Services;
 using Identity.Domain.Utils.Interfaces;
 using Identity.Infrastructure.Users.AutoMapper;
 using Identity.Infrastructure.Users.Repositories;
-using Identity.Infrastructure.Users.Services;
 using Identity.Infrastructure.Utils.Common;
+using Identity.Service.Users;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Identity.API
