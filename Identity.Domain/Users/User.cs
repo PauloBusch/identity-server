@@ -1,5 +1,6 @@
 ﻿using Identity.Domain.Companies;
 using Identity.Domain.Utils.Common;
+using Identity.Domain.Utils.Hash;
 using System;
 using System.Collections.Generic;
 
@@ -14,13 +15,8 @@ namespace Identity.Domain.Users
 
         private List<CompanyUser> _companiesUsers;
 
-        public User(
-            Guid? id,
-            string name,
-            string password
-        ) : base(id ?? Guid.NewGuid()) { 
-            Name = name;
-            PasswordHash = password;
+        protected User() {
+            _companiesUsers = new List<CompanyUser>();
         }
     }
 }

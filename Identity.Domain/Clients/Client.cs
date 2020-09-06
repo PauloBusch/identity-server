@@ -1,6 +1,5 @@
 ﻿using Identity.Domain.Clients;
 using Identity.Domain.Utils.Common;
-using System;
 using System.Collections.Generic;
 
 namespace Identity.Domain.Apps
@@ -13,15 +12,8 @@ namespace Identity.Domain.Apps
 
         private List<ClientCompany> _clientsCompanies;
 
-        public Client(
-            Guid? id,
-            string name,
-            string url
-        ) : base(id ?? Guid.NewGuid())
-        {
+        protected Client() {
             _clientsCompanies = new List<ClientCompany>();
-            Name = name;
-            Url = url;
         }
     }
 }

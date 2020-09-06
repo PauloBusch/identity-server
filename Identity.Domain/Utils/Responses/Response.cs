@@ -1,5 +1,6 @@
 ﻿using Identity.Domain.Utils.Enums;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Identity.Domain.Utils.Responses
 {
@@ -7,29 +8,42 @@ namespace Identity.Domain.Utils.Responses
     {
         [JsonIgnore] public EStatus Status { get; protected set; }
         public bool Success => Status == EStatus.Success;
-        public string Message { get; private set; }
+        public IReadOnlyCollection<string> ErrorMessages 
+            => _errors.Count > 0 ? _errors.AsReadOnly() : null;
         public int? TotalRows { get; private set; }
         public T Data { get; private set; }
 
-        public Response(EStatus status, string message)
+        private List<string> _errors;
+
+        protected Response()
         {
-            Message = message;
-            Status = status;
-            TotalRows = 0;
+            Status = EStatus.Success;
+            _errors = new List<string>();
         }
 
-        public Response(T data, int? total = null) { 
-            Data = data;  
+        public Response(T data, int? total = 0) : this() { 
             TotalRows = total;
+            Data = data;
+        }
+
+        public Response(EStatus status, string error) : this()
+        {
+            _errors.Add(error);
+            Status = status;
+        }
+
+        public Response(EStatus status, IEnumerable<string> errors) : this()
+        {
+            _errors.AddRange(errors);
+            Status = status;
         }
     }
 
     public class Response : Response<dynamic>
     {
-        public Response() : base(EStatus.Success, null) { }
+        public Response() : base() { }
 
-        public Response(int total) : base(null, total) { }
-
-        public Response(EStatus status, string message) : base(status, message) { }
+        public Response(EStatus status, string error) : base(status, error) { }
+        public Response(EStatus status, IEnumerable<string> errors) : base(status, errors) { }
     }
 }

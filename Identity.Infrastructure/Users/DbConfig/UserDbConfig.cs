@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Identity.Infrastructure.Users.Mapping
+namespace Identity.Infrastructure.Users.DbConfig
 {
     public class UserDbConfig : IEntityTypeConfiguration<User>
     {
@@ -26,6 +26,9 @@ namespace Identity.Infrastructure.Users.Mapping
             builder.Property(p => p.PasswordHash)
                 .HasMaxLength(80)
                 .IsRequired();
+
+            builder.HasIndex(p => p.Email)
+                .IsUnique();
         }
     }
 }

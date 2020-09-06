@@ -1,10 +1,17 @@
-﻿using Identity.Domain.Utils.Interfaces;
+﻿using Identity.Domain.Users.Dtos;
+using Identity.Domain.Utils.Responses;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Identity.Domain.Users.Services
 {
-    public interface IUserService : IService<User>
+    public interface IUserService
     {
-        bool ExistsByEmail(string email);
-        User GetByEmail(string email);
+        Task<UserResponseDto> GetAsync(Guid id);
+        Task<IEnumerable<UserResponseDto>> GetAllAsync();
+        Task<Response> CreateAsync(UserRequestDto userDto);
+        Task<Response> UpdateAsync(UserRequestDto userDto);
+        Task<Response> DeleteAsync(Guid id);
     }
 }

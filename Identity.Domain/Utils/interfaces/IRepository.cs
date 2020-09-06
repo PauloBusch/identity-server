@@ -11,8 +11,8 @@ namespace Identity.Domain.Utils.Interfaces
         IQueryable<TEntity> Query();
         Task<TEntity> GetAsync(Guid id);
         Task<IEnumerable<TEntity>> GetAllAsync();
-        Task Create(TEntity entity);
-        Task Update(TEntity entity);
-        Task Delete(TEntity entity);
+        Task CreateAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task DeleteAsync(TEntity entity);
     }
 }

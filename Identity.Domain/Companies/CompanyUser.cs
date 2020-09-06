@@ -12,14 +12,6 @@ namespace Identity.Domain.Companies
         public Company Company { get; private set; }
         public User User { get; private set; }
         
-        public CompanyUser(
-            Guid? id,
-            Guid companyId,
-            Guid userId
-        ) : base(id ?? Guid.NewGuid())
-        {
-            CompanyId = companyId;
-            UserId = userId;
-        }
+        protected CompanyUser() { }
     }
 }

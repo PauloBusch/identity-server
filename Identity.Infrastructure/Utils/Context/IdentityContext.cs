@@ -1,5 +1,5 @@
 ﻿using Identity.Domain.Users;
-using Identity.Infrastructure.Users.Mapping;
+using Identity.Infrastructure.Users.DbConfig;
 using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Infrastructure.Utils.Context

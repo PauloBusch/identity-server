@@ -1,13 +1,12 @@
-﻿using Identity.Domain.Users;
-using Identity.Domain.Utils.Interfaces;
+﻿using Identity.Domain.Users.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Identity.Domain.Companies.Services
 {
-    public interface ICompanyService : IService<Company>
+    public interface ICompanyService
     {
-        Task<IEnumerable<User>> GetUsersAsync(Guid id);
+        Task<IEnumerable<UserResponseDto>> GetUsersAsync(Guid id);
     }
 }

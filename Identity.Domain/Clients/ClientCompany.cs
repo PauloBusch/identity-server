@@ -13,14 +13,6 @@ namespace Identity.Domain.Clients
         public Client Client { get; private set; }
         public Company Company { get; private set; }
 
-        public ClientCompany(
-            Guid? id,
-            Guid clientId,
-            Guid companyId
-        ) : base(id ?? Guid.NewGuid())
-        {
-            ClientId = clientId;
-            CompanyId = companyId;
-        }
+        protected ClientCompany() { }
     }
 }

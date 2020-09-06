@@ -16,17 +16,9 @@ namespace Identity.Domain.Companies
         private List<ClientCompany> _clientsCompanies;
         private List<CompanyUser> _companiesUsers;
 
-        public Company(
-            Guid? id,
-            string name,
-            string federalRegistration
-        ) : base(id ?? Guid.NewGuid())
-        {
+        protected Company() {
             _companiesUsers = new List<CompanyUser>();
             _clientsCompanies = new List<ClientCompany>();
-            Name = name;
-            FederalRegistration = federalRegistration;
-            Active = true;
         }
     }
 }

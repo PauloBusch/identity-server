@@ -3,6 +3,8 @@
     public enum EStatus
     {
         Success = 200,
-        NotFund = 404
+        Invalid = 400,
+        NotFund = 404,
+        Conflict = 409
     }
 }

@@ -21,15 +21,16 @@ namespace Identity.Infrastructure.Utils.Common
             _repository = context.Set<TEntity>();
         }
 
-        public async Task Create(TEntity entity)
+        public async Task CreateAsync(TEntity entity)
         {
             await _repository.AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(TEntity entity)
+        public async Task DeleteAsync(TEntity entity)
         {
             _repository.Remove(entity);
-            await Task.CompletedTask;
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
@@ -47,10 +48,10 @@ namespace Identity.Infrastructure.Utils.Common
             return _repository.AsQueryable();
         }
 
-        public async Task Update(TEntity entity)
+        public async Task UpdateAsync(TEntity entity)
         {
             _repository.Update(entity);
-            await Task.CompletedTask;
+            await _context.SaveChangesAsync();
         }
     }
 }
