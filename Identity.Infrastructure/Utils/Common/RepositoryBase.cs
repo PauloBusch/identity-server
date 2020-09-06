@@ -27,9 +27,10 @@ namespace Identity.Infrastructure.Utils.Common
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(TEntity entity)
+        public async Task DeleteAsync(Guid id)
         {
-            _repository.Remove(entity);
+            var entityDb = await _repository.FindAsync(id);
+            _repository.Remove(entityDb);
             await _context.SaveChangesAsync();
         }
 
@@ -50,7 +51,8 @@ namespace Identity.Infrastructure.Utils.Common
 
         public async Task UpdateAsync(TEntity entity)
         {
-            _repository.Update(entity);
+            var entityDb = await _repository.FindAsync(entity.Id);
+            _context.Entry(entityDb).CurrentValues.SetValues(entity);
             await _context.SaveChangesAsync();
         }
     }

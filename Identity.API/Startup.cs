@@ -2,7 +2,9 @@ using FluentValidation.AspNetCore;
 using Identity.Domain;
 using Identity.Domain.Utils.Enums;
 using Identity.Domain.Utils.Responses;
+using Identity.Domain.Utils.Security;
 using Identity.Infrastructure.Utils.Context;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +29,7 @@ namespace Identity.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var tokenConfiguration = Configuration.GetSection("Token").Get<TokenConfiguration>();
             services.AddDbContext<IdentityContext>(options => { 
                 options.UseMySql(Configuration.GetConnectionString("Identity"));     
             });
@@ -36,6 +39,20 @@ namespace Identity.API
             IocMapping.AddAutoMapper(services);
 
             services.AddControllers();
+            services
+                .AddAuthentication(options => {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options => {
+                    var validation = options.TokenValidationParameters;
+                    validation.ValidAudience = tokenConfiguration.Audience;
+                    validation.ValidIssuer = tokenConfiguration.Issuer;
+                    validation.ValidateIssuerSigningKey = true;
+                    validation.ValidateLifetime = true;
+                    validation.ClockSkew = TimeSpan.Zero;
+                });
+
             services.AddMvcCore()
                 .ConfigureApiBehaviorOptions(
                     options => options.InvalidModelStateResponseFactory = ctx => { 

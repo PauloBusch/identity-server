@@ -13,6 +13,6 @@ namespace Identity.Domain.Utils.Interfaces
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task CreateAsync(TEntity entity);
         Task UpdateAsync(TEntity entity);
-        Task DeleteAsync(TEntity entity);
+        Task DeleteAsync(Guid id);
     }
 }

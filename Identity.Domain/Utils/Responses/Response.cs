@@ -21,7 +21,7 @@ namespace Identity.Domain.Utils.Responses
             _errors = new List<string>();
         }
 
-        public Response(T data, int? total = 0) : this() { 
+        public Response(T data, int? total = null) : this() {
             TotalRows = total;
             Data = data;
         }

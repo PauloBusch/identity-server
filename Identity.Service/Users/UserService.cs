@@ -27,8 +27,8 @@ namespace Identity.Service.Users
 
         public async Task<Response> CreateAsync(UserRequestDto userDto)
         {
-            var exist = await _repository.ExistByEmailAsync(userDto.Email);
-            if (exist) return new Response(EStatus.Conflict, "Já existe um usuário com este email");
+            var existEmail = _repository.Query().Any(u => u.Email == userDto.Email);
+            if (existEmail) return new Response(EStatus.Conflict, "Já existe um usuário com este Email");
             var user = _mapper.Map<User>(userDto);
             await _repository.CreateAsync(user);
             return new Response();
@@ -36,8 +36,9 @@ namespace Identity.Service.Users
 
         public async Task<Response> DeleteAsync(Guid id)
         {
-            var user = await _repository.GetAsync(id);
-            await _repository.DeleteAsync(user);
+            var exists = _repository.Query().Any(u => u.Id == id);
+            if (!exists) return new Response(EStatus.NotFund, "Usuário com o Id não existe");
+            await _repository.DeleteAsync(id);
             return new Response();
         }
 
@@ -55,6 +56,10 @@ namespace Identity.Service.Users
 
         public async Task<Response> UpdateAsync(UserRequestDto userDto)
         {
+            var exists = _repository.Query().Any(u => u.Id == userDto.Id);
+            if (!exists) return new Response(EStatus.NotFund, "Usuário com o Id não existe");
+            var existEmail = _repository.Query().Any(u => u.Id != userDto.Id && u.Email == userDto.Email);
+            if (existEmail) return new Response(EStatus.Conflict, "Já existe um usuário com este Email");
             var user = _mapper.Map<User>(userDto);
             await _repository.UpdateAsync(user);
             return new Response();

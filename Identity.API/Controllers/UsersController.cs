@@ -35,14 +35,14 @@ namespace Identity.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<Response> Create([FromRoute] Guid id, [FromBody] UserRequestDto userDto)
+        public async Task<Response> Update([FromRoute] Guid id, [FromBody] UserRequestDto userDto)
         {
             userDto.Id = id;
             return GetResult(await _userService.UpdateAsync(userDto));
         }
 
         [HttpDelete("{id}")]
-        public async Task<Response> Create([FromRoute] Guid id)
+        public async Task<Response> Delete([FromRoute] Guid id)
         {
             return GetResult(await _userService.DeleteAsync(id));
         }
