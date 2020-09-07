@@ -1,4 +1,5 @@
-﻿using Identity.Domain.Entities;
+﻿using Identity.Data.Mapping;
+using Identity.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Data.Context
@@ -11,6 +12,7 @@ namespace Identity.Data.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new UserMap());
             base.OnModelCreating(builder);
         }
     }
