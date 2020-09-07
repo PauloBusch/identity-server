@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Identity.API.Controllers
 {
+    [Route("api/users")]
     public class UsersController : IdentityControllerBase
     {
         private readonly IUserService _userService;
