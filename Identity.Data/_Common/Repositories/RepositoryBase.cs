@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Identity.Data._Common.Repositories
 {
-    public abstract class RepositoryBase<TEntity> : IRepository<TEntity>
+    public class RepositoryBase<TEntity> : IRepository<TEntity>
         where TEntity : EntityBase
     {
         protected readonly IdentityContext _context;

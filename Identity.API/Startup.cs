@@ -1,3 +1,4 @@
+using Identity.CrossCutting.Injection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +18,14 @@ namespace Identity.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureInjection.Database(services);
+            ConfigureInjection.Services(services);
+            ConfigureInjection.Repositories(services);
+            services.AddMvcCore()
+                .AddJsonOptions(options => { 
+                    options.JsonSerializerOptions.IgnoreNullValues = true;
+                });
+
             services.AddControllers();
         }
 

@@ -1,17 +1,19 @@
 ﻿using Identity.Domain._Common.Enums;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace Identity.Domain._Common.Results
 {
     public class Result<T> where T : class
     {
-        public EStatus Status { get; protected set; }
+        [JsonIgnore] public EStatus Status { get; protected set; }
         public int? TotalRows { get; protected set; }
         public T Data { get; protected set; }
         public bool Success
             => Status == EStatus.Success && !_errorMessages.Any();
-        public IEnumerable<string> ErrorMessages => _errorMessages.AsReadOnly();
+        public IEnumerable<string> ErrorMessages =>
+            _errorMessages.Any() ? _errorMessages.AsReadOnly() : null;
 
         protected readonly List<string> _errorMessages;
 
@@ -21,7 +23,7 @@ namespace Identity.Domain._Common.Results
             _errorMessages = new List<string>();
         }
 
-        public Result(T data, int? total = 1) : this()
+        public Result(T data, int? total = null) : this()
         {
             Data = data;
             TotalRows = total;
@@ -38,10 +40,6 @@ namespace Identity.Domain._Common.Results
             _errorMessages.AddRange(errors);
             Status = status;
         }
-
-        public bool ShouldSerializeErrorMessages() => _errorMessages.Any();
-
-        public bool ShouldSerializeStatus() => false;
     }
 
     public class Result : Result<dynamic> {
