@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API", "Identity.API\Identity.API.csproj", "{8721A25E-6684-4C03-8617-39F0C6854A27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Domain", "Identity.Domain\Identity.Domain.csproj", "{6A432EF3-9248-4630-939A-6C6A7C8FA5B2}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8721A25E-6684-4C03-8617-39F0C6854A27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8721A25E-6684-4C03-8617-39F0C6854A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8721A25E-6684-4C03-8617-39F0C6854A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8721A25E-6684-4C03-8617-39F0C6854A27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A432EF3-9248-4630-939A-6C6A7C8FA5B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A432EF3-9248-4630-939A-6C6A7C8FA5B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A432EF3-9248-4630-939A-6C6A7C8FA5B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A432EF3-9248-4630-939A-6C6A7C8FA5B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
