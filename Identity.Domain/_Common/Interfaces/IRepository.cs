@@ -7,6 +7,7 @@ namespace Identity.Domain._Common.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : EntityBase
     {
+        Task<bool> ExistAsync(Guid id);
         Task<TEntity> GetAsync(Guid id);
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task CreateAsync(TEntity entity);

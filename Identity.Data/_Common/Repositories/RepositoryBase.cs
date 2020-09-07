@@ -37,6 +37,11 @@ namespace Identity.Data._Common.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<bool> ExistAsync(Guid id)
+        {
+            return await _dataset.AnyAsync(e => e.Id.Equals(id));
+        }
+
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _dataset.ToArrayAsync();
@@ -44,7 +49,7 @@ namespace Identity.Data._Common.Repositories
 
         public async Task<TEntity> GetAsync(Guid id)
         {
-            return await _dataset.FirstOrDefaultAsync(e => e.Id.Equals(id));
+            return await _dataset.FindAsync(id);
         }
 
         public async Task UpdateAsync(TEntity entity)
