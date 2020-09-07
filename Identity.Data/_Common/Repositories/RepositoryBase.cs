@@ -20,7 +20,7 @@ namespace Identity.Data._Common.Repositories
             _dataset = context.Set<TEntity>();
         }
 
-        public async Task CreateAsync(TEntity entity)
+        public virtual async Task CreateAsync(TEntity entity)
         {
             entity.Id = entity.Id == Guid.Empty 
                 ? Guid.NewGuid() 
@@ -30,29 +30,29 @@ namespace Identity.Data._Common.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public virtual async Task DeleteAsync(Guid id)
         {
             var entityDb = await _dataset.FindAsync(id);
             _dataset.Remove(entityDb);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> ExistAsync(Guid id)
+        public virtual async Task<bool> ExistAsync(Guid id)
         {
             return await _dataset.AnyAsync(e => e.Id.Equals(id));
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _dataset.ToArrayAsync();
         }
 
-        public async Task<TEntity> GetAsync(Guid id)
+        public virtual async Task<TEntity> GetAsync(Guid id)
         {
             return await _dataset.FindAsync(id);
         }
 
-        public async Task UpdateAsync(TEntity entity)
+        public virtual async Task UpdateAsync(TEntity entity)
         {
             var entityDb = await _dataset.FindAsync(entity.Id);
             entity.CreatedAt = entityDb.CreatedAt;

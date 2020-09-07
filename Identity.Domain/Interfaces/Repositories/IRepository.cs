@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Identity.Domain._Common.Interfaces
+namespace Identity.Domain.Interfaces.Repositories
 {
     public interface IRepository<TEntity> where TEntity : EntityBase
     {

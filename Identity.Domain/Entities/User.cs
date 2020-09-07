@@ -1,5 +1,4 @@
 ﻿using Identity.Domain._Common.Entities;
-using System;
 
 namespace Identity.Domain.Entities
 {
@@ -10,26 +9,5 @@ namespace Identity.Domain.Entities
         public string PasswordHash { get; private set; }
 
         protected User() { }
-
-        public User(
-            Guid? id,
-            string name,
-            string email
-        ) : this()
-        {
-            CreatedAt = DateTime.UtcNow;
-            Id = id ?? Guid.NewGuid();
-            Name = name;
-            Email = email;
-        }
-
-        public void Change(
-            string name,
-            string email
-        ) {
-            UpdatedAt = DateTime.UtcNow;
-            Name = name;
-            Email = email;
-        }
     }
 }
