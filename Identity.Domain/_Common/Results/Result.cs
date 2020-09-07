@@ -6,23 +6,22 @@ namespace Identity.Domain._Common.Results
 {
     public class Result<T> where T : class
     {
-        public T Data { get; protected set; }
+        public EStatus Status { get; protected set; }
         public int? TotalRows { get; protected set; }
+        public T Data { get; protected set; }
         public bool Success
-            => _status == EStatus.Success;
-        public IEnumerable<string> ErrorMessages
-            => _errorMessages.Any() ? ErrorMessages : null;
+            => Status == EStatus.Success && !_errorMessages.Any();
+        public IEnumerable<string> ErrorMessages => _errorMessages.AsReadOnly();
 
-        protected EStatus _status;
         protected readonly List<string> _errorMessages;
 
-        protected Result()
+        public Result()
         {
-            _status = EStatus.Success;
+            Status = EStatus.Success;
             _errorMessages = new List<string>();
         }
 
-        public Result(T data, int total) : this()
+        public Result(T data, int? total = 1) : this()
         {
             Data = data;
             TotalRows = total;
@@ -31,22 +30,29 @@ namespace Identity.Domain._Common.Results
         public Result(EStatus status, string error) : this()
         {
             _errorMessages.Add(error);
-            _status = status;
+            Status = status;
         }
 
         public Result(EStatus status, IEnumerable<string> errors) : this()
         {
             _errorMessages.AddRange(errors);
-            _status = status;
+            Status = status;
         }
 
-        public int StatusCode() => (int)_status;
+        public bool ShouldSerializeErrorMessages() => _errorMessages.Any();
+
+        public bool ShouldSerializeStatus() => false;
     }
 
     public class Result : Result<dynamic> {
-        public Result(int total) : base()
-        {
-            TotalRows = total;
+        public Result() : base() { }
+
+        public Result(dynamic data) : base() { 
+            Data = data;
         }
+
+        public Result(EStatus status, string error) : base(status, error) { }
+
+        public Result(EStatus status, IEnumerable<string> errors) : base(status, errors) { }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Identity.Data.Context;
 using Identity.Domain._Common.Entities;
-using Identity.Domain._Common.Interfaces;
+using Identity.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -37,7 +37,7 @@ namespace Identity.Data._Common.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public virtual async Task<bool> ExistAsync(Guid id)
+        public virtual async Task<bool> ExistByIdAsync(Guid id)
         {
             return await _dataset.AnyAsync(e => e.Id.Equals(id));
         }
@@ -47,7 +47,7 @@ namespace Identity.Data._Common.Repositories
             return await _dataset.ToArrayAsync();
         }
 
-        public virtual async Task<TEntity> GetAsync(Guid id)
+        public virtual async Task<TEntity> GetByIdAsync(Guid id)
         {
             return await _dataset.FindAsync(id);
         }
