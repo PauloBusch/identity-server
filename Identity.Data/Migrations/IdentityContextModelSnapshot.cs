@@ -37,7 +37,9 @@ namespace Identity.Data.Migrations
                         .HasMaxLength(150);
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("varchar(80) CHARACTER SET utf8mb4")
+                        .HasMaxLength(80);
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");

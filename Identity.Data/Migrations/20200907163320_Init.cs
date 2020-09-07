@@ -16,7 +16,7 @@ namespace Identity.Data.Migrations
                     UpdatedAt = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(maxLength: 150, nullable: false),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true)
+                    PasswordHash = table.Column<string>(maxLength: 80, nullable: false)
                 },
                 constraints: table =>
                 {

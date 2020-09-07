@@ -8,7 +8,7 @@ namespace Identity.Data.Context
         public IdentityContext CreateDbContext(string[] args)
         {
             // Utilizado para geração das migrações
-            var connectionString = "Server=localhost;Port=3306;Database=Identity;Uid=root;Pwd=123456";
+            var connectionString = "Server=localhost;Port=3306;Database=Identity;Uid=identity;Pwd=123";
             var optionsBuilder = new DbContextOptionsBuilder<IdentityContext>();
             optionsBuilder.UseMySql(connectionString);
             return new IdentityContext(optionsBuilder.Options);

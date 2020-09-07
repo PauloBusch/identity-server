@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Identity.Data.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20200907162954_Init")]
+    [Migration("20200907163320_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,7 +39,9 @@ namespace Identity.Data.Migrations
                         .HasMaxLength(150);
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("varchar(80) CHARACTER SET utf8mb4")
+                        .HasMaxLength(80);
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");

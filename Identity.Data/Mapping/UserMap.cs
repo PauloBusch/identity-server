@@ -21,6 +21,10 @@ namespace Identity.Data.Mapping
             builder.Property(p => p.Email)
                 .HasMaxLength(100)
                 .IsRequired();
+
+            builder.Property(p => p.PasswordHash)
+                .HasMaxLength(80)
+                .IsRequired();
         }
     }
 }
