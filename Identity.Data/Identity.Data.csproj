@@ -17,11 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>

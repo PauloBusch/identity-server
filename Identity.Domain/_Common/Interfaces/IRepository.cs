@@ -1,9 +1,9 @@
-﻿using Identity.Domain.Utils.Common;
+﻿using Identity.Domain._Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Identity.Domain.Interfaces
+namespace Identity.Domain._Common.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : EntityBase
     {
