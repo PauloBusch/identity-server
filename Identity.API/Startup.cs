@@ -33,14 +33,11 @@ namespace Identity.API
                 })
                 .ConfigureApiBehaviorOptions(
                     options => options.InvalidModelStateResponseFactory = ctx => {
-                        var errors = ctx.ModelState
-                            .ToDictionary(
-                                k => k.Key, 
-                                v => v.Value.Errors
-                                    .Select(e => e.ErrorMessage)
-                                    .ToList()
-                            );
-                        return new BadRequestObjectResult(new Result(EStatus.Invalid, errors));
+                        var errors = ctx.ModelState.Values
+                            .SelectMany(v => v.Errors)
+                            .Select(e => e.ErrorMessage);
+                        var result = new Result(EStatus.Invalid, errors);
+                        return new BadRequestObjectResult(result);
                     }
                 );
             services.AddControllers();

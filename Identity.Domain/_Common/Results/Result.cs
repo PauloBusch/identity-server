@@ -13,15 +13,15 @@ namespace Identity.Domain._Common.Results
         public T Data { get; protected set; }
         public bool Success
             => Status == EStatus.Success && !_errorMessages.Any();
-        public IDictionary<string, List<string>> ErrorMessages =>
-            _errorMessages.Any() ? _errorMessages : null;
+        public IEnumerable<string> ErrorMessages =>
+            _errorMessages.Any() ? _errorMessages.AsReadOnly() : null;
 
-        protected readonly IDictionary<string, List<string>> _errorMessages;
+        protected readonly List<string> _errorMessages;
 
         public Result()
         {
             Status = EStatus.Success;
-            _errorMessages = new Dictionary<string, List<string>>();
+            _errorMessages = new List<string>();
         }
 
         public Result(T data, int? total = null) : this()
@@ -30,33 +30,21 @@ namespace Identity.Domain._Common.Results
             TotalRows = total;
         }
 
-        public Result(EStatus status, string field, string error) : this()
+        public Result(EStatus status, string error) : this()
         {
-            if (!_errorMessages.ContainsKey(field))
-                _errorMessages.Add(field, new List<string>());
-            _errorMessages[field].Add(error);
+            _errorMessages.Add(error);
             Status = status;
         }
 
-        public Result(EStatus status, string field, IEnumerable<string> errors) : this()
+        public Result(EStatus status, IEnumerable<string> errors) : this()
         {
-            if (!_errorMessages.ContainsKey(field))
-                _errorMessages.Add(field, new List<string>());
-            _errorMessages[field].AddRange(errors);
+            _errorMessages.AddRange(errors);
             Status = status;
         }
 
-        public Result(EStatus status, IDictionary<string, List<string>> errorMessages) : this()
+        public void AddError(EStatus status, string error)
         {
-            _errorMessages = errorMessages;
-            Status = status;
-        }
-
-        public void AddError(EStatus status, string field, string error)
-        {
-            if (!_errorMessages.ContainsKey(field))
-                _errorMessages.Add(field, new List<string>());
-            _errorMessages[field].Add(error);
+            _errorMessages.Add(error);
             Status = status;
         }
     }
@@ -68,10 +56,8 @@ namespace Identity.Domain._Common.Results
             Data = data;
         }
 
-        public Result(EStatus status, string field, string error) : base(status, field, error) { }
+        public Result(EStatus status, string error) : base(status, error) { }
 
-        public Result(EStatus status, string field, IEnumerable<string> errors) : base(status, field, errors) { }
-
-        public Result(EStatus status, IDictionary<string, List<string>> errorMessages) : base(status, errorMessages) { }
+        public Result(EStatus status, IEnumerable<string> errors) : base(status, errors) { }
     }
 }

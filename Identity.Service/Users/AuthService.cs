@@ -22,7 +22,7 @@ namespace Identity.Service.Users
         {
             var defaultMessage = "Falha ao realizar login";
             var exists = await _userRepository.ExistByEmailAsync(loginDto.Email);
-            if (!exists) return new Result<object>(EStatus.Unauthorized, nameof(loginDto.Email), defaultMessage);
+            if (!exists) return new Result<object>(EStatus.Unauthorized, defaultMessage);
             var userDb = await _userRepository.FindByEmailAsync(loginDto.Email);
             return new Result<object>(userDb);
         }
