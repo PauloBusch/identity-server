@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 namespace Identity.Domain.Interfaces.Repositories.Users
 {
     public interface IUserRepository : IRepository<User> {
-        Task<bool> ExistByEmailAsync(string email, Guid? ignoreId = null);    
+        Task<bool> ExistByEmailAsync(string email, Guid? ignoreId = null);  
+        Task<User> FindByEmailAsync(string email);
     }
 }

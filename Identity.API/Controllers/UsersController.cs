@@ -21,13 +21,13 @@ namespace Identity.API.Controllers
         [HttpGet]
         public async Task<Result<IEnumerable<User>>> ListAsync()
         {
-            return GetResult(await _userService.GetAllAsync());
+            return GetResult(await _userService.AllAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<Result<User>> GetAsync([FromRoute] Guid id)
         {
-            return GetResult(await _userService.GetByIdAsync(id));
+            return GetResult(await _userService.FindByIdAsync(id));
         }
 
         [HttpPost]

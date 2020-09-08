@@ -42,12 +42,12 @@ namespace Identity.Data._Common.Repositories
             return await _dataset.AnyAsync(e => e.Id.Equals(id));
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+        public virtual async Task<IEnumerable<TEntity>> AllAsync()
         {
             return await _dataset.ToArrayAsync();
         }
 
-        public virtual async Task<TEntity> GetByIdAsync(Guid id)
+        public virtual async Task<TEntity> FindByIdAsync(Guid id)
         {
             return await _dataset.FindAsync(id);
         }

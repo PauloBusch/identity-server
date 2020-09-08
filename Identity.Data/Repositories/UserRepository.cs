@@ -16,5 +16,10 @@ namespace Identity.Data.Repositories
         {
             return await _context.Users.AnyAsync(u => !u.Id.Equals(ignoreId) && u.Email.Equals(email));
         }
+
+        public async Task<User> FindByEmailAsync(string email)
+        {
+            return await _context.Users.FirstAsync(u => u.Email.Equals(email));
+        }
     }
 }

@@ -34,16 +34,16 @@ namespace Identity.Service.Users
             return new Result();
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public async Task<IEnumerable<User>> AllAsync()
         {
-            return await _userRepository.GetAllAsync();
+            return await _userRepository.AllAsync();
         }
 
-        public async Task<Result<User>> GetByIdAsync(Guid id)
+        public async Task<Result<User>> FindByIdAsync(Guid id)
         {
             var exist = await _userRepository.ExistByIdAsync(id);
             if (!exist) return new Result<User>(EStatus.NotFund, "Usuário com esse id não existe");
-            var user = await _userRepository.GetByIdAsync(id);
+            var user = await _userRepository.FindByIdAsync(id);
             return new Result<User>(user);
         }
 
