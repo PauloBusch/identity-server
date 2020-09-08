@@ -23,6 +23,7 @@ namespace Identity.CrossCutting.Injection
         public static void Services(IServiceCollection serviceCollection)
         {
             serviceCollection.AddScoped<IUserService, UserService>();
+            serviceCollection.AddScoped<IAuthService, AuthService>();
         }
 
         public static void Repositories(IServiceCollection serviceCollection)

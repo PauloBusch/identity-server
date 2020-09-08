@@ -8,6 +8,7 @@ namespace Identity.Domain._Common.Results
     public class Result<T> where T : class
     {
         [JsonIgnore] public EStatus Status { get; protected set; }
+        [JsonIgnore] public bool Error => !Success;
         public int? TotalRows { get; protected set; }
         public T Data { get; protected set; }
         public bool Success
@@ -38,6 +39,12 @@ namespace Identity.Domain._Common.Results
         public Result(EStatus status, IEnumerable<string> errors) : this()
         {
             _errorMessages.AddRange(errors);
+            Status = status;
+        }
+
+        public void AddError(EStatus status, string error)
+        {
+            _errorMessages.Add(error);
             Status = status;
         }
     }
