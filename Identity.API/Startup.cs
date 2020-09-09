@@ -1,6 +1,7 @@
 using Identity.CrossCutting.Injection;
 using Identity.Domain._Common.Enums;
 using Identity.Domain._Common.Results;
+using Identity.Domain.Security;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,13 @@ namespace Identity.API
             ConfigureInjection.Database(services);
             ConfigureInjection.Services(services);
             ConfigureInjection.Repositories(services);
+
+            var tokenConfig = Configuration.GetSection("TokenConfig").Get<TokenConfig>();
+            var signingConfig = new SigningConfig(tokenConfig);
+
+            services.AddSingleton(tokenConfig);
+            services.AddSingleton(signingConfig);
+
             services.AddMvcCore()
                 .AddJsonOptions(options => { 
                     options.JsonSerializerOptions.IgnoreNullValues = true;

@@ -1,7 +1,7 @@
 ﻿using Identity.Domain._Common.Results;
-using Identity.Domain.Entities;
+using Identity.Domain.Dtos.Auth;
+using Identity.Domain.Dtos.Users;
 using Identity.Domain.Interfaces.Services.Users;
-using Identity.Domain.Pcos.Users;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -18,13 +18,13 @@ namespace Identity.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<Result<object>> LoginAsync([FromBody] LoginDto loginDto)
+        public async Task<Result<TokenDto>> LoginAsync([FromBody] LoginDto loginDto)
         {
             return GetResult(await  _authService.LoginAsync(loginDto));
         }
 
         [HttpGet("logout")]
-        public Result<object> Logout()
+        public Result Logout()
         {
             return GetResult(new Result());
         }

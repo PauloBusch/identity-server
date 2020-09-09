@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Identity.Domain.Pcos.Users
+namespace Identity.Domain.Dtos.Auth
 {
     public class LoginDto
     {
