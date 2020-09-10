@@ -2,6 +2,7 @@
 using Identity.Domain.Dtos.Auth;
 using Identity.Domain.Dtos.Users;
 using Identity.Domain.Interfaces.Services.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace Identity.API.Controllers
             _authService = authService;
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<Result<TokenDto>> LoginAsync([FromBody] LoginDto loginDto)
         {

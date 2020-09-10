@@ -35,7 +35,7 @@ namespace Identity.Service.Users
 
         public async Task<Result<TokenDto>> LoginAsync(LoginDto loginDto)
         {
-            var errorResult = new Result<TokenDto>(EStatus.Unauthorized, "Email ou senha inválida");
+            var errorResult = new Result<TokenDto>(EStatus.Success, "Email ou senha inválida");
             var exists = await _userRepository.ExistByEmailAsync(loginDto.Email);
             if (!exists) return errorResult;
             var userDb = await _userRepository.FindByEmailAsync(loginDto.Email);

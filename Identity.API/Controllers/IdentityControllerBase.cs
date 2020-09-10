@@ -1,8 +1,10 @@
 ﻿using Identity.Domain._Common.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.API.Controllers
 {
+    [Authorize]
     [ApiController]
     public class IdentityControllerBase : ControllerBase
     {

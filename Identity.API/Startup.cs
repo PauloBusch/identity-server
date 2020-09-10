@@ -2,6 +2,8 @@ using Identity.CrossCutting.Injection;
 using Identity.Domain._Common.Enums;
 using Identity.Domain._Common.Results;
 using Identity.Domain.Security;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +36,28 @@ namespace Identity.API
 
             services.AddSingleton(tokenConfig);
             services.AddSingleton(signingConfig);
+
+            services
+                .AddAuthentication(options => { 
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options => {
+                    var validation = options.TokenValidationParameters;
+                    validation.IssuerSigningKey = signingConfig.Key;
+                    validation.ValidAudience = tokenConfig.Audience;
+                    validation.ValidIssuer = tokenConfig.Issuer;
+                    validation.ValidateIssuerSigningKey = true;
+                    validation.ValidateLifetime = true;
+                    validation.ClockSkew = TimeSpan.Zero;
+                });
+
+            services.AddAuthorization(options => {
+                options.DefaultPolicy = new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser()
+                    .Build();
+            });
 
             services.AddMvcCore()
                 .AddJsonOptions(options => { 
